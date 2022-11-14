@@ -11,7 +11,7 @@ public class CalculatorViewModel extends ViewModel {
 
     public CalculatorViewModel() {
         numericExpressionText = new MutableLiveData<>();
-        numericExpressionText.setValue("gf");
+        numericExpressionText.setValue("");
     }
 
     public LiveData<String> getText() {
@@ -19,5 +19,8 @@ public class CalculatorViewModel extends ViewModel {
     }
     public void setText(char character) {
         numericExpressionText.setValue(numericExpressionText.getValue() + character);
+    }
+    public void ClearText(){
+        numericExpressionText.setValue("");
     }
 }

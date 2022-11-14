@@ -5,16 +5,23 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+
+import com.example.simplecalculator.Models.Operator;
+import com.example.simplecalculator.databinding.FragmentCalculatorBinding;
 
 public class CalculatorFragment extends Fragment implements  View.OnClickListener{
 
     private  final String TAG = this.getClass().getSimpleName();
     private FragmentCalculatorBinding binding;
     CalculatorViewModel calculatorViewModel;
+    private boolean operatorOn ;
+    TextView textView;
+    private CalculatorPresenter<CalculatorFragmentView> presenter;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -44,8 +51,9 @@ public class CalculatorFragment extends Fragment implements  View.OnClickListene
         binding.btnMultiply.setOnClickListener(this);
 
 
-//        final TextView textView = binding.textDashboard;
-//        calculatorViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        textView = binding.numericExpressionText;
+        calculatorViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        presenter = new CalculatorPresenter<>();
         return root;
     }
 
@@ -57,7 +65,14 @@ public class CalculatorFragment extends Fragment implements  View.OnClickListene
 
     @Override
     public void onClick(View view) {
-        if(view == binding.btn1 ){
+
+        if( operatorOn && view!=binding.btnPlus && view!=binding.btnMinus && view!=binding.btnMultiply && view!=binding.btnDevide ) {
+            //TODO: Clear Text
+            calculatorViewModel.ClearText();
+            operatorOn = false;
+        }
+
+        if(view == binding.btn1){
             Log.d(TAG, "Clicked n1");
             calculatorViewModel.setText('1');
         }
@@ -75,18 +90,23 @@ public class CalculatorFragment extends Fragment implements  View.OnClickListene
         }
         else if (view == binding.btn5){
             Log.d(TAG, "Clicked n5");
+            calculatorViewModel.setText('5');
         }
         else if (view == binding.btn6){
             Log.d(TAG, "Clicked n6");
+            calculatorViewModel.setText('6');
         }
         else if (view == binding.btn7){
             Log.d(TAG, "Clicked n7");
+            calculatorViewModel.setText('7');
         }
         else if (view == binding.btn8){
             Log.d(TAG, "Clicked n8");
+            calculatorViewModel.setText('8');
         }
         else if (view == binding.btn9){
             Log.d(TAG, "Clicked n9");
+            calculatorViewModel.setText('9');
         }
         else if (view == binding.btnAC){
             Log.d(TAG, "Clicked AC");
@@ -99,15 +119,22 @@ public class CalculatorFragment extends Fragment implements  View.OnClickListene
         }
         else if (view == binding.btnDevide){
             Log.d(TAG, "Clicked /");
+
+            operatorOn = true;
         }
         else if (view == binding.btnMultiply){
             Log.d(TAG, "Clicked X");
+            operatorOn = true;
         }
         else if (view == binding.btnMinus){
             Log.d(TAG, "Clicked -");
+            operatorOn = true;
         }
         else if (view == binding.btnPlus){
             Log.d(TAG, "Clicked +");
+            presenter.SetCurrentOperator(Operator.ADD,operatorOn);
+            if(!operatorOn) presenter.CalculateResult(calculatorViewModel.getText().getValue());
+            operatorOn = true;
         }
         else if (view == binding.btnDot){
             Log.d(TAG, "Clicked .");
@@ -117,6 +144,10 @@ public class CalculatorFragment extends Fragment implements  View.OnClickListene
         }
         else if (view == binding.btn0) {
             Log.d(TAG, "Clicked 0");
+            calculatorViewModel.setText('0');
         }
+
+
+
     }
 }
