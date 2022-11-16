@@ -24,7 +24,9 @@ public class CalculatorPresenter<V extends CalculatorFragmentView> {
     }
 
     public CalculatorPresenter(){
-        calculateOnOperator = false;
+        Operand1 = "";
+        Operand2 = "";
+        currentOperator = Operator.NONE;
     }
 
     public void SetCurrentOperator(Operator operator, boolean operatorChange){
@@ -34,7 +36,9 @@ public class CalculatorPresenter<V extends CalculatorFragmentView> {
     }
 
     public String CalculateResult(String currentValueS){
+        if(currentOperator == Operator.NONE) return currentValueS;
         double currentValue = Double.parseDouble(currentValueS);
+
         if(Operand1.isEmpty()){
             Operand1= currentValueS;
             return Operand1;
@@ -59,5 +63,12 @@ public class CalculatorPresenter<V extends CalculatorFragmentView> {
         Operand1 = String.valueOf(total);
         Log.d(TAG ,"Current result" + total );
         return String.valueOf(total);
+    }
+
+    public void ClearAll(){
+        Operand1 = "";
+        Operand2 = "";
+        total = 0 ;
+        currentOperator = Operator.NONE;
     }
 }

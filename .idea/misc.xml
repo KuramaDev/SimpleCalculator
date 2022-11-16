@@ -3,8 +3,21 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/Tsalikis Stavros/AndroidStudioProjects/SimpleCalculator/app/src/main/res/layout/activity_main.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/Tsalikis Stavros/AndroidStudioProjects/SimpleCalculator/app/src/main/res/drawable/app_background.xml" value="0.1665" />
+        <entry key="..\:/Users/Tsalikis Stavros/AndroidStudioProjects/SimpleCalculator/app/src/main/res/drawable/btn_gradient_backround.xml" value="0.1635" />
+        <entry key="..\:/Users/Tsalikis Stavros/AndroidStudioProjects/SimpleCalculator/app/src/main/res/drawable/calculator_screen_background.xml" value="0.1545" />
+        <entry key="..\:/Users/Tsalikis Stavros/AndroidStudioProjects/SimpleCalculator/app/src/main/res/drawable/ic_notifications_black_24dp.xml" value="0.1545" />
+        <entry key="..\:/Users/Tsalikis Stavros/AndroidStudioProjects/SimpleCalculator/app/src/main/res/drawable/number_button_background.xml" value="0.175" />
+        <entry key="..\:/Users/Tsalikis Stavros/AndroidStudioProjects/SimpleCalculator/app/src/main/res/drawable/number_button_background_pressed.xml" value="0.175" />
+        <entry key="..\:/Users/Tsalikis Stavros/AndroidStudioProjects/SimpleCalculator/app/src/main/res/drawable/number_button_states.xml" value="0.175" />
+        <entry key="..\:/Users/Tsalikis Stavros/AndroidStudioProjects/SimpleCalculator/app/src/main/res/drawable/operator_button_background.xml" value="0.1665" />
+        <entry key="..\:/Users/Tsalikis Stavros/AndroidStudioProjects/SimpleCalculator/app/src/main/res/drawable/operator_button_background_pressed.xml" value="0.175" />
+        <entry key="..\:/Users/Tsalikis Stavros/AndroidStudioProjects/SimpleCalculator/app/src/main/res/drawable/operator_button_states.xml" value="0.1545" />
+        <entry key="..\:/Users/Tsalikis Stavros/AndroidStudioProjects/SimpleCalculator/app/src/main/res/drawable/operators_background_shadow.xml" value="0.175" />
+        <entry key="..\:/Users/Tsalikis Stavros/AndroidStudioProjects/SimpleCalculator/app/src/main/res/drawable/rounded_button.xml" value="0.1405" />
+        <entry key="..\:/Users/Tsalikis Stavros/AndroidStudioProjects/SimpleCalculator/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/Users/Tsalikis Stavros/AndroidStudioProjects/SimpleCalculator/app/src/main/res/layout/fragment_calculator.xml" value="0.25" />
+        <entry key="..\:/Users/Tsalikis Stavros/AndroidStudioProjects/SimpleCalculator/app/src/main/res/layout/fragment_home.xml" value="0.22447916666666667" />
       </map>
     </option>
   </component>

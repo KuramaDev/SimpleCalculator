@@ -17,10 +17,17 @@ public class CalculatorViewModel extends ViewModel {
     public LiveData<String> getText() {
         return numericExpressionText;
     }
-    public void setText(char character) {
-        numericExpressionText.setValue(numericExpressionText.getValue() + character);
+    public void setText(String value){numericExpressionText.setValue(value);}
+    public void setNumber(char character) {
+        if(numericExpressionText.getValue().isEmpty() || numericExpressionText.getValue().equals("0"))
+            numericExpressionText.setValue(String.valueOf(character));
+        else
+            numericExpressionText.setValue(numericExpressionText.getValue() + character);
     }
     public void ClearText(){
         numericExpressionText.setValue("");
+    }
+    public void SetToZero(){
+        numericExpressionText.setValue("0");
     }
 }

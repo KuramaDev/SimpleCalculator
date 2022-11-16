@@ -1,5 +1,5 @@
 package com.example.simplecalculator.Models;
 
 public enum Operator {
-    ADD, SUBSTRACT, MULTIPLY, DIVIDE, EQUALS
+    ADD, SUBSTRACT, MULTIPLY, DIVIDE, NONE
 }
