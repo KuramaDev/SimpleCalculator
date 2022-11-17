@@ -2,12 +2,11 @@ package com.example.simplecalculator;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.view.View;
 
 import com.example.simplecalculator.ui.Base.BaseActivity;
+import com.example.simplecalculator.ui.home.CurrencyConversionView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -15,10 +14,10 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.example.simplecalculator.databinding.ActivityMainBinding;
 
-public class MainActivity extends BaseActivity implements CurrencyConversionView {
+public class MainActivity extends BaseActivity  {
 
     private ActivityMainBinding binding;
-    private CurrencyConversionPresenterImp<CurrencyConversionView> presenter;
+
 
 
 
@@ -33,16 +32,11 @@ public class MainActivity extends BaseActivity implements CurrencyConversionView
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications)
+                R.id.navigation_currency, R.id.navigation_calculator)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
-
-        presenter = new CurrencyConversionPresenterImp<>();
-        presenter.onAttach(this);
-//        presenter.FetchSymbols();
-//        presenter.ConvertAmount(800,"GBP","EUR");
 
     }
 

@@ -1,8 +1,7 @@
 <resources>
     <string name="app_name">Simple Calculator</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_calculator">Calculator</string>
+    <string name="title_currencyConverter">Currency Converter</string>
     <string name="dot"> . </string>
     <string name="n0"> 0 </string>
     <string name="n1"> 1 </string>

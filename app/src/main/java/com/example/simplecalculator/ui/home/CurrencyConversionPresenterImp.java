@@ -1,4 +1,4 @@
-package com.example.simplecalculator;
+package com.example.simplecalculator.ui.home;
 
 import android.util.Log;
 
@@ -9,11 +9,8 @@ import com.example.simplecalculator.Services.ConversionService;
 import com.example.simplecalculator.ui.Base.BasePresenter;
 import com.example.simplecalculator.ui.Base.BasePresenterImplementation;
 
-import java.util.HashMap;
-
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.annotations.NonNull;
-import io.reactivex.rxjava3.observers.DisposableObserver;
 import io.reactivex.rxjava3.observers.DisposableSingleObserver;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
@@ -32,6 +29,8 @@ public class CurrencyConversionPresenterImp<V extends CurrencyConversionView> ex
                     public void onSuccess(Symbols symbols){
 
                         Log.d(TAG , "List of keys: " + symbols.getSymbols().keySet());
+
+                        getView().SymbolsFetched(symbols.getSymbols().keySet().toArray(new String[0]));
                     }
 
                     @Override
