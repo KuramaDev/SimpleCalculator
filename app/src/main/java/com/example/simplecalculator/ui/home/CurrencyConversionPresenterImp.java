@@ -17,7 +17,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 public class CurrencyConversionPresenterImp<V extends CurrencyConversionView> extends BasePresenterImplementation<V> implements BasePresenter<V> {
 
     public final String TAG = this.getClass().getSimpleName();
-
+    private Symbols symbolsFetched;
     public void FetchSymbols(){
         ConversionService conversionAPIService = ApiClient.getClient().create(ConversionService.class);
 
@@ -27,9 +27,7 @@ public class CurrencyConversionPresenterImp<V extends CurrencyConversionView> ex
                 .subscribe(new DisposableSingleObserver<Symbols>(){
                     @Override
                     public void onSuccess(Symbols symbols){
-
-                        Log.d(TAG , "List of keys: " + symbols.getSymbols().keySet());
-
+                        symbolsFetched = symbols;
                         getView().SymbolsFetched(symbols.getSymbols().keySet().toArray(new String[0]));
                     }
 
@@ -68,4 +66,12 @@ public class CurrencyConversionPresenterImp<V extends CurrencyConversionView> ex
 //
 //    }
 
+    public String searchSymbolDescription(String symbol){
+        String description;
+        if(symbolsFetched != null)
+           description = symbolsFetched.getSymbols().get(symbol);
+        else
+            description = "";
+        return description;
+    }
 }

@@ -52,6 +52,7 @@ public class HomeFragment extends Fragment implements CurrencyConversionView {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 binding.currencyToSymbol.setText(adapterView.getSelectedItem().toString());
+                binding.currencyDescription.setText(presenter.searchSymbolDescription(adapterView.getSelectedItem().toString()));
             }
 
             @Override
