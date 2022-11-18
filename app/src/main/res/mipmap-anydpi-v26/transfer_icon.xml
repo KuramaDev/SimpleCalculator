@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
+    <background android:drawable="@color/transfer_icon_background"/>
+    <foreground android:drawable="@mipmap/transfer_icon_foreground"
+        android:bottom="15dp"
+        android:end="15dp"
+        android:start="15dp"
+        android:top="15dp"/>
+
+</adaptive-icon>

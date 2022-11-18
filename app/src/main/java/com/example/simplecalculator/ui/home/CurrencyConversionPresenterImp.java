@@ -51,7 +51,7 @@ public class CurrencyConversionPresenterImp<V extends CurrencyConversionView> ex
                 .subscribe(new DisposableSingleObserver<ConversionResult>() {
                     @Override
                     public void onSuccess(@NonNull ConversionResult result) {
-
+                        getView().ResultFetched(result.getConversionResult());
                     }
 
                     @Override
@@ -60,5 +60,12 @@ public class CurrencyConversionPresenterImp<V extends CurrencyConversionView> ex
                     }
                 });
     }
+
+//    public void FetchOneYearsTimeData(){
+//        ConversionService conversionAPIService = ApiClient.getClient().create(ConversionService.class);
+//        String today
+//        conversionAPIService.GetTimeseries("Z1NNpSzgILvs6MYkfphvNEc3Eram32b4", )
+//
+//    }
 
 }

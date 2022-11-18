@@ -22,4 +22,9 @@ public interface ConversionService {
                                      @Query("to") String toCode,
                                      @Query("from") String fromCode,
                                      @Query("amount") float amountToConvert);
+
+//    @GET("{timeseries}") //
+//    Single<HashMap<String,String>> GetTimeseries(@Header("apikey") String key,
+//                                     @Query("start_date") String toCode,
+//                                     @Query("end_date") String fromCode);
 }
