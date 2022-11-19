@@ -1,10 +1,12 @@
 package com.example.simplecalculator.ui.Calculator;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -21,6 +23,7 @@ public class CalculatorFragment extends Fragment implements  View.OnClickListene
     CalculatorViewModel calculatorViewModel;
     private boolean operatorOn ;
     TextView textView;
+    private Button previousButton;
     private CalculatorPresenter<CalculatorFragmentView> presenter;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -68,6 +71,8 @@ public class CalculatorFragment extends Fragment implements  View.OnClickListene
 
         if( operatorOn && view!=binding.btnPlus && view!=binding.btnMinus && view!=binding.btnMultiply && view!=binding.btnDevide && view!=binding.btnEquals && view!=binding.btnDelete && view!=binding.btnPositiveNegative) {
             calculatorViewModel.ClearText();
+            if(previousButton != null)
+                previousButton.setTextColor(Color.WHITE);
             operatorOn = false;
         }
 
@@ -117,21 +122,37 @@ public class CalculatorFragment extends Fragment implements  View.OnClickListene
         else if (view == binding.btnDevide){
             if(!operatorOn)  calculatorViewModel.setText(presenter.CalculateResult(calculatorViewModel.getText().getValue()));
             presenter.SetCurrentOperator(Operator.DIVIDE);
+            if(previousButton != null)
+            previousButton.setTextColor(Color.WHITE);
+            previousButton = (Button)view;
+            ((Button) view).setTextColor(Color.BLACK);
             operatorOn = true;
         }
         else if (view == binding.btnMultiply){
             if(!operatorOn) calculatorViewModel.setText(presenter.CalculateResult(calculatorViewModel.getText().getValue()));
             presenter.SetCurrentOperator(Operator.MULTIPLY);
+            if(previousButton != null)
+            previousButton.setTextColor(Color.WHITE);
+            previousButton = (Button)view;
+            ((Button) view).setTextColor(Color.BLACK);
             operatorOn = true;
         }
         else if (view == binding.btnMinus){
             if(!operatorOn) calculatorViewModel.setText(presenter.CalculateResult(calculatorViewModel.getText().getValue()));
             presenter.SetCurrentOperator(Operator.SUBSTRACT);
+            if(previousButton != null)
+            previousButton.setTextColor(Color.WHITE);
+            previousButton = (Button)view;
+            ((Button) view).setTextColor(Color.BLACK);
             operatorOn = true;
         }
         else if (view == binding.btnPlus){
             if(!operatorOn) calculatorViewModel.setText(presenter.CalculateResult(calculatorViewModel.getText().getValue()));
             presenter.SetCurrentOperator(Operator.ADD);
+            if(previousButton != null)
+            previousButton.setTextColor(Color.WHITE);
+            previousButton = (Button)view;
+            ((Button) view).setTextColor(Color.BLACK);
             operatorOn = true;
         }
         else if (view == binding.btnDot){
