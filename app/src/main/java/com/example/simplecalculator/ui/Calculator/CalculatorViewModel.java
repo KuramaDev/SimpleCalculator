@@ -40,4 +40,16 @@ public class CalculatorViewModel extends ViewModel {
         else
             numericExpressionText.setValue(current);
     }
+
+    public void addSign(){
+        String current = numericExpressionText.getValue();
+        if (current.contains("-")){
+            Log.d("YOLO", "Found minus");
+            current = current.replace("-","");
+        }
+        else{
+            current = "-" + current;
+        }
+        numericExpressionText.setValue(current);
+    }
 }

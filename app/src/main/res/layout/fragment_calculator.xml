@@ -284,6 +284,16 @@
             android:gravity="center|center_horizontal|center_vertical">
 
             <android.widget.Button
+                android:id="@+id/btnPositiveNegative"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_margin="10dp"
+                android:layout_weight="0"
+                android:background="@drawable/operator_button_states"
+                android:text="+/-"
+                android:textColor="@color/white" />
+
+            <android.widget.Button
                 android:id="@+id/btn0"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"

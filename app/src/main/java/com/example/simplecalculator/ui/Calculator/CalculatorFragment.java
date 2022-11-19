@@ -49,7 +49,7 @@ public class CalculatorFragment extends Fragment implements  View.OnClickListene
         binding.btnDot.setOnClickListener(this);
         binding.btnEquals.setOnClickListener(this);
         binding.btnMultiply.setOnClickListener(this);
-
+        binding.btnPositiveNegative.setOnClickListener(this);
 
         textView = binding.numericExpressionText;
         calculatorViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
@@ -66,7 +66,7 @@ public class CalculatorFragment extends Fragment implements  View.OnClickListene
     @Override
     public void onClick(View view) {
 
-        if( operatorOn && view!=binding.btnPlus && view!=binding.btnMinus && view!=binding.btnMultiply && view!=binding.btnDevide && view!=binding.btnEquals && view!=binding.btnDelete) {
+        if( operatorOn && view!=binding.btnPlus && view!=binding.btnMinus && view!=binding.btnMultiply && view!=binding.btnDevide && view!=binding.btnEquals && view!=binding.btnDelete && view!=binding.btnPositiveNegative) {
             calculatorViewModel.ClearText();
             operatorOn = false;
         }
@@ -142,6 +142,9 @@ public class CalculatorFragment extends Fragment implements  View.OnClickListene
             calculatorViewModel.setText(presenter.CalculateResult(calculatorViewModel.getText().getValue()));
             presenter.SetCurrentOperator(Operator.NONE);
             operatorOn = true;
+        }
+        else if (view == binding.btnPositiveNegative){
+            calculatorViewModel.addSign();
         }
 
     }
