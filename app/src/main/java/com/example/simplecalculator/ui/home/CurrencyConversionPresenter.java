@@ -1,4 +1,4 @@
-package com.example.simplecalculator;
+package com.example.simplecalculator.ui.home;
 
 import com.example.simplecalculator.ui.Base.BasePresenter;
 import com.example.simplecalculator.ui.home.CurrencyConversionView;

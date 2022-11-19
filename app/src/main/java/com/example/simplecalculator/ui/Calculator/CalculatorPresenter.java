@@ -9,7 +9,7 @@ public class CalculatorPresenter<V extends CalculatorFragmentView> {
 
     final String TAG = this.getClass().getSimpleName();
     CalculatorFragmentView view;
-    private double total=0;
+    private float total=0;
     private boolean calculateOnOperator ;
     private Operator currentOperator;
     private String Operand1 = "";
@@ -29,15 +29,15 @@ public class CalculatorPresenter<V extends CalculatorFragmentView> {
         currentOperator = Operator.NONE;
     }
 
-    public void SetCurrentOperator(Operator operator, boolean operatorChange){
+    public void SetCurrentOperator(Operator operator){
         currentOperator = operator;
-        //Better syntax button.enabled = (currentOperator != Operator.Divide)
-
     }
 
     public String CalculateResult(String currentValueS){
-        if(currentOperator == Operator.NONE) return currentValueS;
-        double currentValue = Double.parseDouble(currentValueS);
+        if(currentOperator == Operator.NONE) {
+            Operand1= currentValueS;
+            return currentValueS;
+        }
 
         if(Operand1.isEmpty()){
             Operand1= currentValueS;
@@ -46,8 +46,8 @@ public class CalculatorPresenter<V extends CalculatorFragmentView> {
         else{
             Operand2 = currentValueS;
         }
-        double operand1Number = Double.parseDouble(Operand1);
-        double operand2Number = Double.parseDouble(Operand2);
+        float operand1Number = Float.parseFloat(Operand1);
+        float operand2Number = Float.parseFloat(Operand2);
         if (currentOperator == Operator.ADD){
             total = operand1Number + operand2Number;
         }
@@ -60,9 +60,12 @@ public class CalculatorPresenter<V extends CalculatorFragmentView> {
         else if (currentOperator == Operator.DIVIDE){
             total = operand1Number / operand2Number;
         }
-        Operand1 = String.valueOf(total);
-        Log.d(TAG ,"Current result" + total );
-        return String.valueOf(total);
+        if(total == (int) total)
+            Operand1 = String.valueOf((int)total);
+        else
+            Operand1 = String.valueOf(total);
+
+        return Operand1;
     }
 
     public void ClearAll(){
@@ -71,4 +74,6 @@ public class CalculatorPresenter<V extends CalculatorFragmentView> {
         total = 0 ;
         currentOperator = Operator.NONE;
     }
+
+
 }
