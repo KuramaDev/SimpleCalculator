@@ -1,5 +1,7 @@
 package com.example.simplecalculator.ui.Calculator;
 
+import android.util.Log;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -29,5 +31,13 @@ public class CalculatorViewModel extends ViewModel {
     }
     public void SetToZero(){
         numericExpressionText.setValue("0");
+    }
+    public void DeleteLastCharacter(){
+        String current = numericExpressionText.getValue();
+        current = current.replaceAll(".$", "");
+        if(current.isEmpty())
+            numericExpressionText.setValue("0");
+        else
+            numericExpressionText.setValue(current);
     }
 }

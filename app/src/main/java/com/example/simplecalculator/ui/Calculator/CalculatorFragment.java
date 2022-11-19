@@ -66,7 +66,7 @@ public class CalculatorFragment extends Fragment implements  View.OnClickListene
     @Override
     public void onClick(View view) {
 
-        if( operatorOn && view!=binding.btnPlus && view!=binding.btnMinus && view!=binding.btnMultiply && view!=binding.btnDevide && view!=binding.btnEquals ) {
+        if( operatorOn && view!=binding.btnPlus && view!=binding.btnMinus && view!=binding.btnMultiply && view!=binding.btnDevide && view!=binding.btnEquals && view!=binding.btnDelete) {
             calculatorViewModel.ClearText();
             operatorOn = false;
         }
@@ -111,7 +111,8 @@ public class CalculatorFragment extends Fragment implements  View.OnClickListene
             operatorOn = true;
         }
         else if (view == binding.btnDelete){
-            Log.d(TAG, "Clicked DEL");
+            if(!operatorOn)
+                calculatorViewModel.DeleteLastCharacter();
         }
         else if (view == binding.btnDevide){
             if(!operatorOn)  calculatorViewModel.setText(presenter.CalculateResult(calculatorViewModel.getText().getValue()));
@@ -134,7 +135,6 @@ public class CalculatorFragment extends Fragment implements  View.OnClickListene
             operatorOn = true;
         }
         else if (view == binding.btnDot){
-            Log.d(TAG, "Clicked .");
             calculatorViewModel.setNumber('.');
         }
         else if (view == binding.btnEquals) {
