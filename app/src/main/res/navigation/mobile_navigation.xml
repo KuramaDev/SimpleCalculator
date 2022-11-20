@@ -13,8 +13,8 @@
 
     <fragment
         android:id="@+id/navigation_currency"
-        android:name="com.example.simplecalculator.ui.home.HomeFragment"
+        android:name="com.example.simplecalculator.ui.currencyConversion.CurrencyConversionFragment"
         android:label="@string/title_currencyConverter"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_currency_conversion" />
 
 </navigation>

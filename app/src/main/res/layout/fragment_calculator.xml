@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/app_background"
-    tools:context=".ui.Calculator.CalculatorFragment">
+    tools:context=".ui.Calculator.CalculatorFragment"
+    >
 
     <TextView
         android:id="@+id/numericExpressionText"
@@ -26,7 +27,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="RtlCompat" />
 
     <TableLayout
         android:id="@+id/tableLayout"

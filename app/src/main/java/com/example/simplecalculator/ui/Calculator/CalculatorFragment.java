@@ -1,9 +1,11 @@
 package com.example.simplecalculator.ui.Calculator;
 
+import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -14,7 +16,10 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.simplecalculator.Models.Operator;
+import com.example.simplecalculator.R;
 import com.example.simplecalculator.databinding.FragmentCalculatorBinding;
+
+import java.util.Objects;
 
 public class CalculatorFragment extends Fragment implements  View.OnClickListener{
 
@@ -66,14 +71,22 @@ public class CalculatorFragment extends Fragment implements  View.OnClickListene
         binding = null;
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     @Override
     public void onClick(View view) {
 
         if( operatorOn && view!=binding.btnPlus && view!=binding.btnMinus && view!=binding.btnMultiply && view!=binding.btnDevide && view!=binding.btnEquals && view!=binding.btnDelete && view!=binding.btnPositiveNegative) {
             calculatorViewModel.ClearText();
-            if(previousButton != null)
-                previousButton.setTextColor(Color.WHITE);
+            if(previousButton != null && view != binding.btnClear)
+            {
+                previousButton.setBackground(requireContext().getDrawable(R.drawable.operator_button_states));
+                previousButton = null;
+            }
             operatorOn = false;
+        }
+        else if(view == binding.btnEquals){
+            if(previousButton != null) previousButton.setBackground(requireContext().getDrawable(R.drawable.operator_button_states));
+            previousButton = null;
         }
 
         if(view == binding.btn0){
@@ -122,37 +135,25 @@ public class CalculatorFragment extends Fragment implements  View.OnClickListene
         else if (view == binding.btnDevide){
             if(!operatorOn)  calculatorViewModel.setText(presenter.CalculateResult(calculatorViewModel.getText().getValue()));
             presenter.SetCurrentOperator(Operator.DIVIDE);
-            if(previousButton != null)
-            previousButton.setTextColor(Color.WHITE);
-            previousButton = (Button)view;
-            ((Button) view).setTextColor(Color.BLACK);
+            SetButtonToPressed((Button)view);
             operatorOn = true;
         }
         else if (view == binding.btnMultiply){
             if(!operatorOn) calculatorViewModel.setText(presenter.CalculateResult(calculatorViewModel.getText().getValue()));
             presenter.SetCurrentOperator(Operator.MULTIPLY);
-            if(previousButton != null)
-            previousButton.setTextColor(Color.WHITE);
-            previousButton = (Button)view;
-            ((Button) view).setTextColor(Color.BLACK);
+            SetButtonToPressed((Button)view);
             operatorOn = true;
         }
         else if (view == binding.btnMinus){
             if(!operatorOn) calculatorViewModel.setText(presenter.CalculateResult(calculatorViewModel.getText().getValue()));
             presenter.SetCurrentOperator(Operator.SUBSTRACT);
-            if(previousButton != null)
-            previousButton.setTextColor(Color.WHITE);
-            previousButton = (Button)view;
-            ((Button) view).setTextColor(Color.BLACK);
+            SetButtonToPressed((Button)view);
             operatorOn = true;
         }
         else if (view == binding.btnPlus){
             if(!operatorOn) calculatorViewModel.setText(presenter.CalculateResult(calculatorViewModel.getText().getValue()));
             presenter.SetCurrentOperator(Operator.ADD);
-            if(previousButton != null)
-            previousButton.setTextColor(Color.WHITE);
-            previousButton = (Button)view;
-            ((Button) view).setTextColor(Color.BLACK);
+            SetButtonToPressed((Button)view);
             operatorOn = true;
         }
         else if (view == binding.btnDot){
@@ -169,4 +170,12 @@ public class CalculatorFragment extends Fragment implements  View.OnClickListene
         }
 
     }
+
+    @SuppressLint("UseCompatLoadingForDrawables")
+    private void SetButtonToPressed(Button clicked){
+        if(previousButton != null) previousButton.setBackground(requireContext().getDrawable(R.drawable.operator_button_states));
+        previousButton = clicked;
+        clicked.setBackground(requireContext().getDrawable(R.drawable.operator_button_background_pressed));
+    }
+
 }

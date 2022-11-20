@@ -1,4 +1,4 @@
-package com.example.simplecalculator.ui.home;
+package com.example.simplecalculator.ui.currencyConversion;
 
 import android.util.Log;
 
@@ -49,7 +49,9 @@ public class CurrencyConversionPresenterImp<V extends CurrencyConversionView> ex
                 .subscribe(new DisposableSingleObserver<ConversionResult>() {
                     @Override
                     public void onSuccess(@NonNull ConversionResult result) {
-                        getView().ResultFetched(result.getConversionResult());
+                        Log.d(TAG , String.valueOf(result.getConversionResult()));
+                        Log.d(TAG , String.valueOf(result.getInformation().getRate()));
+                        getView().ResultFetched(result.getConversionResult(),result.getInformation().getRate());
                     }
 
                     @Override
@@ -58,13 +60,6 @@ public class CurrencyConversionPresenterImp<V extends CurrencyConversionView> ex
                     }
                 });
     }
-
-//    public void FetchOneYearsTimeData(){
-//        ConversionService conversionAPIService = ApiClient.getClient().create(ConversionService.class);
-//        String today
-//        conversionAPIService.GetTimeseries("Z1NNpSzgILvs6MYkfphvNEc3Eram32b4", )
-//
-//    }
 
     public String searchSymbolDescription(String symbol){
         String description;

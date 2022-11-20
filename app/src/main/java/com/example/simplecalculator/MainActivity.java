@@ -3,16 +3,14 @@ package com.example.simplecalculator;
 import android.content.Context;
 import android.os.Bundle;
 
+import com.example.simplecalculator.databinding.ActivityMainBinding;
 import com.example.simplecalculator.ui.Base.BaseActivity;
-import com.example.simplecalculator.ui.home.CurrencyConversionView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-
-import com.example.simplecalculator.databinding.ActivityMainBinding;
 
 public class MainActivity extends BaseActivity  {
 

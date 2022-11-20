@@ -22,6 +22,10 @@ public class ConversionResult {
         this.conversionResult = conversionResult;
     }
 
+    public Info getInformation(){
+        return information;
+    }
+
     public boolean isStatusResponse() {
         return statusResponse;
     }
@@ -35,6 +39,14 @@ public class ConversionResult {
         float rate;
         @SerializedName("timestamp")
         long timestamp;
+
+        public float getRate() {
+            return rate;
+        }
+
+        public void setRate(float rate) {
+            this.rate = rate;
+        }
     }
 
 

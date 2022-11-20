@@ -21,4 +21,12 @@
     <string name="allClear"> AC </string>
     <string name="clear"> C </string>
     <string name="delete"> Del </string>
+
+    <string name="currencyTitle"> Currency Converter </string>
+    <string name="fromLabel"> From: </string>
+    <string name="toLabel"> To: </string>
+    <string name="insertionLabel"> Value to convert: </string>
+    <string name="resultLabel"> Result value </string>
+
+    <string name="loading"> Loading... </string>
 </resources>

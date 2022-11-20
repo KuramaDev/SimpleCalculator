@@ -1,4 +1,4 @@
-package com.example.simplecalculator.ui.home;
+package com.example.simplecalculator.ui.currencyConversion;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -16,21 +16,23 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.simplecalculator.R;
 import com.example.simplecalculator.Utils.Utils;
-import com.example.simplecalculator.databinding.FragmentHomeBinding;
+import com.example.simplecalculator.databinding.FragmentCurrencyConversionBinding;
 import com.example.simplecalculator.ui.Base.BaseActivity;
 
-public class HomeFragment extends Fragment implements CurrencyConversionView {
+import java.util.Arrays;
 
-    private FragmentHomeBinding binding;
+public class CurrencyConversionFragment extends Fragment implements CurrencyConversionView {
+
+    private FragmentCurrencyConversionBinding binding;
     private CurrencyConversionPresenterImp<CurrencyConversionView> presenter;
     private BaseActivity parentContext;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        HomeViewModel homeViewModel =
-                new ViewModelProvider(this).get(HomeViewModel.class);
+        CurrencyConversionViewModel homeViewModel =
+                new ViewModelProvider(this).get(CurrencyConversionViewModel.class);
 
-        binding = FragmentHomeBinding.inflate(inflater, container, false);
+        binding = FragmentCurrencyConversionBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         presenter = new CurrencyConversionPresenterImp<>();
@@ -41,6 +43,7 @@ public class HomeFragment extends Fragment implements CurrencyConversionView {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 binding.currencyToSymbol.setText(adapterView.getSelectedItem().toString());
+                binding.currencyDescriptionResult.setText(presenter.searchSymbolDescription(adapterView.getSelectedItem().toString()));
             }
 
             @Override
@@ -51,7 +54,7 @@ public class HomeFragment extends Fragment implements CurrencyConversionView {
         binding.fromSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                binding.currencyToSymbol.setText(adapterView.getSelectedItem().toString());
+                binding.currencyFromSymbol.setText(adapterView.getSelectedItem().toString());
                 binding.currencyDescription.setText(presenter.searchSymbolDescription(adapterView.getSelectedItem().toString()));
             }
 
@@ -98,6 +101,7 @@ public class HomeFragment extends Fragment implements CurrencyConversionView {
 
     @Override
     public void SymbolsFetched(String[] symbols) {
+        Arrays.sort(symbols);
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this.getContext(), R.layout.spinner_row_layout,symbols);
         arrayAdapter.setDropDownViewResource(R.layout.spinner_row_layout);
         binding.fromSpinner.setAdapter(arrayAdapter);
@@ -105,9 +109,12 @@ public class HomeFragment extends Fragment implements CurrencyConversionView {
         HideLoading();
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
-    public void ResultFetched(float result) {
-        Log.d("Fragment","Result Fetched" + result);
+    public void ResultFetched(float result, float rate) {
         binding.conversioResultTV.setText(String.valueOf(result));
+        String fromSymbol = binding.fromSpinner.getSelectedItem().toString();
+        String toSymbol = binding.toSpinner.getSelectedItem().toString();
+        binding.conversionRate.setText("1 " + fromSymbol + " = " + rate + " " + toSymbol);
     }
 }
