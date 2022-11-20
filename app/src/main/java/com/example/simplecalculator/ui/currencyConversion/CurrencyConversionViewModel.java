@@ -10,7 +10,7 @@ public class CurrencyConversionViewModel extends ViewModel {
 
     public CurrencyConversionViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is home fragment");
+
     }
 
     public LiveData<String> getText() {

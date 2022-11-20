@@ -2,6 +2,7 @@ package com.example.simplecalculator.ui.currencyConversion;
 
 import android.util.Log;
 
+import com.example.simplecalculator.BuildConfig;
 import com.example.simplecalculator.Models.ConversionResult;
 import com.example.simplecalculator.Models.Symbols;
 import com.example.simplecalculator.Services.ApiClient;
@@ -21,7 +22,7 @@ public class CurrencyConversionPresenterImp<V extends CurrencyConversionView> ex
     public void FetchSymbols(){
         ConversionService conversionAPIService = ApiClient.getClient().create(ConversionService.class);
 
-        conversionAPIService.getSymbols("Z1NNpSzgILvs6MYkfphvNEc3Eram32b4")
+        conversionAPIService.getSymbols(BuildConfig.API_KEY)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new DisposableSingleObserver<Symbols>(){
@@ -43,14 +44,12 @@ public class CurrencyConversionPresenterImp<V extends CurrencyConversionView> ex
 
         ConversionService conversionAPIService = ApiClient.getClient().create(ConversionService.class);
 
-        conversionAPIService.Convert("Z1NNpSzgILvs6MYkfphvNEc3Eram32b4",from,to,amount)
+        conversionAPIService.Convert(BuildConfig.API_KEY,from,to,amount)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new DisposableSingleObserver<ConversionResult>() {
                     @Override
                     public void onSuccess(@NonNull ConversionResult result) {
-                        Log.d(TAG , String.valueOf(result.getConversionResult()));
-                        Log.d(TAG , String.valueOf(result.getInformation().getRate()));
                         getView().ResultFetched(result.getConversionResult(),result.getInformation().getRate());
                     }
 

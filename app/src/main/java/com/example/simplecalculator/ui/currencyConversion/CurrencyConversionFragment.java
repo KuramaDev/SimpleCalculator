@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -71,7 +72,7 @@ public class CurrencyConversionFragment extends Fragment implements CurrencyConv
                                                     binding.toSpinner.getSelectedItem().toString(),
                                                     binding.fromSpinner.getSelectedItem().toString());
                 else {
-                    Log.e("","Ypoxrewtiko pedio");
+                    Toast.makeText(getContext(),"No value to convert",Toast.LENGTH_LONG).show();
                 }
             }
         });
